@@ -7,6 +7,7 @@
 
 u8* http_download(const char *url)
 {
+	httpcInit(0);
 	Result ret=0;
 	httpcContext context;
 	char *newurl=NULL;

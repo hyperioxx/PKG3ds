@@ -6,14 +6,12 @@
 #include <http.h>
 #include <curl/curl.h>
 #include <tinyxml2.h>
+#include <tui.h>
 
 int main(int argc, char **argv)
 {	
-	gfxInitDefault();   
-	httpcInit(0); // Buffer size when POST/PUT.
-
-	//Initialize console on top screen. Using NULL as the second argument tells the console library to use the internal console structure as current one
-	consoleInit(GFX_TOP, NULL);    
+	TUI app;
+	//Initialize console on top screen. Using NULL as the second argument tells the console library to use the internal console structure as current one    
 	u8* result = http_download("https://archive.org/download/nintendo-3ds-complete-collection/nintendo-3ds-complete-collection_files.xml");
 	tinyxml2::XMLDocument doc;
 
@@ -29,26 +27,7 @@ int main(int argc, char **argv)
 		printf("%s\n", item);
 	}
 	
-	// Main loop
-	while (aptMainLoop())
-	{
-		//Scan all the inputs. This should be done once for each frame
-		hidScanInput();
-
-		//hidKeysDown returns information about which buttons have been just pressed (and they weren't in the previous frame)
-		u32 kDown = hidKeysDown();
-
-		if (kDown & KEY_START) break; // break in order to return to hbmenu
-
-		// Flush and swap framebuffers
-		gfxFlushBuffers();
-		gfxSwapBuffers();
-
-		//Wait for VBlank
-		gspWaitForVBlank();
-	}
-
-	gfxExit();
+	app.Loop();
 	return 0;
 }
 
