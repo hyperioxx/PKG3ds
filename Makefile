@@ -31,7 +31,7 @@ include $(DEVKITARM)/3ds_rules
 #     - icon.png
 #     - <libctru folder>/default_icon.png
 #---------------------------------------------------------------------------------
-APP_TITLE := 3DS Game Downloader
+APP_TITLE := PKG3ds
 APP_DESCRIPTION := Download .3ds files directly
 APP_AUTHOR := HyperioxX
 
@@ -42,12 +42,13 @@ DATA		:=	data
 INCLUDES	:=	include
 GRAPHICS	:=	gfx
 GFXBUILD	:=	$(BUILD)
-#ICON        :=  icon.png
+ICON        :=  icon_sm.png
 #ROMFS		:=	romfs
 #GFXBUILD	:=	$(ROMFS)/gfx
 
 # CIA 
 RSF_PATH		:=	res/app.rsf
+BANNER_IMAGE	:=	res/banner.png
 
 #---------------------------------------------------------------------------------
 # options for code generation
